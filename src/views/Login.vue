@@ -32,9 +32,17 @@ export default {
 
         const login = async () => {
             const loginData = { username: username.value, password: password.value };
-            const resp = await apiService.post('/login', loginData);
-
+            const resp = await apiService.apiService.post('/login', loginData, {
+                'Authorization': 'Bearer YOUR_TOKEN',  // 例如添加授权头
+                'Custom-Header': 'Custom-Value',       // 自定义头部
+            });
+            console.log('----------------------', resp);
+            console.log('===================>', resp.headers);
             if (resp.code === 200) {
+                document.cookie = `Token=${resp.data.Token}; path=/`;
+                // Set Token in request header for Axios
+                // apiService.setTokenInHeader(resp.data.Token);
+
                 router.push('/hello');
             } else {
                 errorAlert.value = true;
