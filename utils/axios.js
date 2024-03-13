@@ -1,15 +1,18 @@
 import axios from 'axios';
 
 const apiService = {
-    // 设置基本的 API 路径，根据你的实际情况进行修改
     baseURL: 'https://192.168.10.101:3000',
-
-    // 初始化 Axios 实例
+    headers: {
+        Authorization: 'token', // Set common Authorization headers
+        SessionID: 'session', // Set other custom headers
+    },
+    // Initialize the Axios instance
     init() {
         axios.defaults.baseURL = this.baseURL;
+        axios.defaults.headers.common = this.headers;
     },
 
-    // 发送 GET 请求的示例方法
+    // Get method
     async get(endpoint) {
         try {
             const response = await axios.get(endpoint);
@@ -19,9 +22,7 @@ const apiService = {
         }
     },
 
-    // 添加其他类型请求的方法，例如 POST、PUT、DELETE 等
-
-    // 示例 POST 请求
+    // Post method
     async post(endpoint, data) {
         try {
             const response = await axios.post(endpoint, data);

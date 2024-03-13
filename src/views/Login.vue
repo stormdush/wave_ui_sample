@@ -5,7 +5,7 @@
             Login faild, please check your username & password.
         </w-alert>
         <w-form @submit.prevent="login" class="wui-form">
-            <w-input v-model="username" class="mb3 left-align" label="Username" inner-icon-left="mdi mdi-account"
+            <w-input v-model="username" class="mb3 left-align" label="Account" inner-icon-left="mdi mdi-account"
                 color="info" outline required></w-input>
             <w-input v-model="password" class="mb3 left-align" label="Password" inner-icon-left="mdi mdi-lock"
                 :type="isPassword ? 'password' : 'text'"
@@ -32,10 +32,7 @@ export default {
 
         const login = async () => {
             const loginData = { username: username.value, password: password.value };
-            const resp = await apiService.apiService.post('/login', loginData, {
-                'Authorization': 'Bearer YOUR_TOKEN',  // 例如添加授权头
-                'Custom-Header': 'Custom-Value',       // 自定义头部
-            });
+            const resp = await apiService.apiService.post('/login', loginData);
             console.log('----------------------', resp);
             console.log('===================>', resp.headers);
             if (resp.code === 200) {
@@ -43,7 +40,7 @@ export default {
                 // Set Token in request header for Axios
                 // apiService.setTokenInHeader(resp.data.Token);
 
-                router.push('/hello');
+                // router.push('/hello');
             } else {
                 errorAlert.value = true;
             }
