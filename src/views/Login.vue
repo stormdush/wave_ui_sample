@@ -33,10 +33,9 @@ export default {
         const login = async () => {
             const loginData = { username: username.value, password: password.value };
             const resp = await apiService.apiService.post('/login', loginData);
-            console.log('----------------------', resp);
-            console.log('===================>', resp.headers);
-            if (resp.code === 200) {
-                document.cookie = `Token=${resp.data.Token}; path=/`;
+
+            if (resp.data.code === 200) {
+                document.cookie = `Token=${resp.data.data.token}; path=/`;
                 // Set Token in request header for Axios
                 // apiService.setTokenInHeader(resp.data.Token);
 

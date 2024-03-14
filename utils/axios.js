@@ -16,7 +16,7 @@ const apiService = {
     async get(endpoint) {
         try {
             const response = await axios.get(endpoint);
-            return response.data;
+            return response;
         } catch (error) {
             throw new Error(`ApiService ${error}`);
         }
@@ -26,7 +26,8 @@ const apiService = {
     async post(endpoint, data) {
         try {
             const response = await axios.post(endpoint, data);
-            return response.data;
+            console.log('-----------------', response);
+            return response;
         } catch (error) {
             throw new Error(`ApiService ${error}`);
         }
