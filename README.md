@@ -1,6 +1,6 @@
 # wave_ui_sample
 
-This template should help get you started developing with Vue 3 in Vite.
+This template should help get you started developing with Vue 3 & Wave_UI in Vite. Its backend system is [Koa_Sample](https://github.com/stormdush/Koa_Sample?tab=readme-ov-file)
 
 ## Customize configuration
 
@@ -23,3 +23,7 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### LICENSE
+
+Licensed under [MIT](./LICENSE).

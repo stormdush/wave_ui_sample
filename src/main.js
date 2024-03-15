@@ -4,10 +4,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import WaveUI from 'wave-ui';
-import apiService from '../utils/axios.js';
 
 const app = createApp(App);
-apiService.apiService.init();
 
 app.use(WaveUI, { /* Some Wave UI options */ });
 app.use(router);

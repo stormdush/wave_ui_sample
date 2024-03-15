@@ -20,7 +20,7 @@
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import apiService from '../../utils/axios.js';
+import { apiPost } from '../../utils/axios.js';
 
 export default {
     setup() {
@@ -32,14 +32,10 @@ export default {
 
         const login = async () => {
             const loginData = { username: username.value, password: password.value };
-            const resp = await apiService.apiService.post('/login', loginData);
+            const resp = await apiPost('/login', loginData);
 
-            if (resp.data.code === 200) {
-                document.cookie = `Token=${resp.data.data.token}; path=/`;
-                // Set Token in request header for Axios
-                // apiService.setTokenInHeader(resp.data.Token);
-
-                // router.push('/hello');
+            if (resp.code === 200) {
+                router.push('/hello');
             } else {
                 errorAlert.value = true;
             }
